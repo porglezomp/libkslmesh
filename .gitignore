@@ -1,0 +1,13 @@
+# Autoconf/Automake
+aclocal.m4
+configure
+Makefile.in
+Makefile
+*.cache
+config.h.in
+config.h
+build-aux
+
+# C
+*.o
+*.a
