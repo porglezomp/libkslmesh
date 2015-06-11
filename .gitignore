@@ -4,9 +4,13 @@ configure
 Makefile.in
 Makefile
 *.cache
+*.log
+config.status
 config.h.in
 config.h
 build-aux
+stamp-h1
+.deps
 
 # C
 *.o
