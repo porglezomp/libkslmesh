@@ -1,15 +1,8 @@
 #ifndef _KSL_MESH_H
 #define _KSL_MESH_H
 
-#ifndef GLushort
-#define GLushort unsigned short
-#endif
-#ifndef GLshort
-#define GLshort short
-#endif
-
-typedef struct { GLshort x, y; } ksl_vert;
-typedef struct { GLushort start, end; } ksl_line;
+typedef struct { short x, y; } ksl_vert;
+typedef struct { unsigned short start, end; } ksl_line;
 
 // Represents a reference counted mesh which may be shared
 typedef struct {

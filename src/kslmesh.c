@@ -62,7 +62,7 @@ static ksl_mesh *parse_mesh(FILE *fd) {
 
   ksl_vert *verts = malloc(vert_count*sizeof(ksl_vert));
   for (int i = 0; i < vert_count; i++) {
-    GLshort x, y;
+    short x, y;
     if (fscanf(fd, " %hd %hd", &x, &y) < 2) {
       ksl_error_string = "KSL parse error: expected an integer in verts";
       free(verts);
@@ -80,7 +80,7 @@ static ksl_mesh *parse_mesh(FILE *fd) {
 
   ksl_line *lines = malloc(line_count*sizeof(ksl_line));
   for (int i = 0; i < line_count; i++) {
-    GLushort x, y;
+    unsigned short x, y;
     if (fscanf(fd, " %hu %hu", &x, &y) < 2) {
       ksl_error_string = "KSL parse error: expected an integer in lines";
       free(verts);
@@ -104,6 +104,12 @@ ksl_mesh_list *ksl_load_meshes(const char *fname, ksl_mesh_list *appendto) {
   fread(magic_word, sizeof(char), 5, fd);
   if (strncmp("ksl01", magic_word, 5) != 0) {
     ksl_error_string = "KSL parse error: missing magic number `ksl01`";
+    return NULL;
+  }
+
+  int major, minor;
+  if (fscanf(fd, " version %d.%d", &major, &minor) < 2) {
+    ksl_error_string = "KSL parse error: missing `version <num>.<num>`";
     return NULL;
   }
 
