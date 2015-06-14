@@ -16,8 +16,8 @@ typedef struct {
 
 // Use this to point to a mesh
 typedef struct {
-  ksl_mesh *mesh;
-} ksl_shared_mesh;
+  ksl_mesh *shared_mesh;
+} ksl_mesh_handle;
 
 // For holding multiple meshes
 typedef struct {
@@ -26,23 +26,23 @@ typedef struct {
   ksl_mesh **meshes;
 } ksl_mesh_list;
 
-// Manage reference counts on a mesh
-void ksl_retain(ksl_mesh*);
-void ksl_release(ksl_mesh*);
-
-// Creates a ksl_shared_mesh from a ksl_mesh*, incrementing the mesh's refcount
-ksl_shared_mesh ksl_make_shared(ksl_mesh*);
-
-// Delete a ksl_shared_mesh, decrementing the refcount on the data source
-void ksl_release_shared(ksl_shared_mesh);
-
-// Free a mesh list and release all of its contained meshes
-void ksl_free_mesh_list(ksl_mesh_list*);
-
 // NOTE: Takes ownership of the vertex and line arrays, if you don't want this
 // then perform a memcpy beforehand
 ksl_mesh *ksl_make_mesh(ksl_vert*, ksl_line*,
 			int vert_count, int line_count, int meter_size);
+
+// Manage reference counts on a mesh
+void ksl_retain_mesh(ksl_mesh*);
+void ksl_release_mesh(ksl_mesh*);
+
+// Creates a ksl_mesh_handle from a ksl_mesh*, incrementing the mesh's refcount
+ksl_mesh_handle ksl_make_handle(ksl_mesh*);
+
+// Delete a ksl_mesh_handle, decrementing the refcount on the data source
+void ksl_release_handle(ksl_mesh_handle);
+
+// Free a mesh list and release all of its contained meshes
+void ksl_free_mesh_list(ksl_mesh_list*);
 
 // Parse meshes from a file and return a mesh list
 // If you pass a mesh list then the new meshes will be appended to the end,

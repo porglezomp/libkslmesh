@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([kslmesh], [0.1], [bionicle.dragon@gmail.com])
+AC_INIT([kslmesh], [0.2], [bionicle.dragon@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CONFIG_SRCDIR([src/])
