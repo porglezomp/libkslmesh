@@ -14,6 +14,8 @@ AC_CHECK_HEADER([stdlib.h])
 AC_CHECK_HEADER([stdio.h])
 
 AC_CONFIG_FILES([Makefile
-		 src/Makefile])
+		 src/Makefile
+		 doc/Makefile
+		 doc/kslmesh_gl.pc])
 
 AC_OUTPUT

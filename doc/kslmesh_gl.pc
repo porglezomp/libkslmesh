@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: KSL Mesh GL
+Description: A library to handle mesh loading and 
+Version: 0.2
+Libs: -L/opt/vc/lib -L${libdir} -lkslmesh_gl -lGLESv1_CM -lbcm_host
+Cflags: -I/opt/vc/include -I${includedir} -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux
